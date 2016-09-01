@@ -23,6 +23,22 @@ public class Employee {
     public Employee() {
         currentDate = new Date();
     }
+    public String getFirstName(){
+        return this.firstName;
+    }
+    public String getLastName(){
+        return this.lastName;
+    }   
+    public void setName(String firstName, String lastName){
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    public String getSSN(){
+        return this.ssn;
+    }
+    public void setSsn(String ssn) {
+        this.ssn = ssn;
+    }
     
     public void performOrientation(String local){
         this.meetWithHrForBenefitAndSalryInfo();    //performed first
