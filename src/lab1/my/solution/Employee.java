@@ -16,83 +16,51 @@ public class Employee {
     private String lastName;
     private String ssn;
     private Date birthDate;
-    private boolean metWithHr;
-    private boolean metDeptStaff;
-    private boolean reviewedDeptPolicies;
-    private boolean movedIn;
+    private boolean completedOrientation;
     private String cubeId;
     private Date currentDate;
 
     public Employee() {
         currentDate = new Date();
     }
+    
     public void performOrientation(String local){
-        this.meetWithHrForBenefitAndSalryInfo();
-        this.meetDepartmentStaff();
-        this.reviewDeptPolicies();
-        this.moveIntoCubicle(local);
+        this.meetWithHrForBenefitAndSalryInfo();    //performed first
+        this.meetDepartmentStaff();                 //performed second
+        this.reviewDeptPolicies();                  //performed third
+        this.moveIntoCubicle(local);                //performed fourth
+        this.completedOrientation = true;           //boolean to prove Orientation is complete
+    }
+    private String getDate(){
+        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
+        return sdf.format(currentDate);
     }
     // Assume this must be performed first
     private void meetWithHrForBenefitAndSalryInfo() {
-        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-        String fmtDate = sdf.format(currentDate);
-        System.out.println("Met with Hr on " + fmtDate);
-        metWithHr = true;
+        System.out.println("Met with Hr on " + getDate());
     }
 
     // Assume this is must be performed second
     private void meetDepartmentStaff() {
-        if(metWithHr) {
-            SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-            String fmtDate = sdf.format(currentDate);
-            System.out.println("Met with Dept. Staff on " + fmtDate);
-            metDeptStaff = true;
-        } else {
-            System.out.println("Sorry, you cannot meet with "
-                    + "department staff until you have met with HR.");
-        }
+        System.out.println("Met with Dept. Staff on " + getDate());
     }
 
     // Assume this must be performed third
     private void reviewDeptPolicies() {
-        if(metWithHr && metDeptStaff) {
-            SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-            String fmtDate = sdf.format(currentDate);
-            System.out.println("Reviewed Dept. Policies on " + fmtDate);
-            reviewedDeptPolicies = true;
-        } else {
-            System.out.println("Sorry, you cannot review "
-                    + " department policies until you have first met with HR "
-                    + "and then with department staff.");
-        }
+        System.out.println("Reviewed Dept. Policies on " + getDate());
     }
 
     // Assume this must be performed 4th
     private void moveIntoCubicle(String cubeId) {
-        if(metWithHr && metDeptStaff && reviewedDeptPolicies) {
-            SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-            String fmtDate = sdf.format(currentDate);
-            System.out.println("Moved into cube on " + fmtDate);
-            this.cubeId = cubeId;
-            this.movedIn = true;
-        } else {
-            System.out.println("Sorry, you cannot move in to a "
-                    + "cubicle until you have first met with HR "
-                    + "and then with department staff, and then reviewed"
-                    + "department policies.");
-        }
-
+        System.out.println("Moved into cube on " + getDate());
+        this.cubeId = cubeId;
     }
 
     public String getStatus() {
-        SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy");
-        String fmtDate = sdf.format(currentDate);
-
-        if(metWithHr && metDeptStaff
-           && reviewedDeptPolicies && movedIn) {
-            return "Orientation is completed on: " + fmtDate;
+        if(this.completedOrientation) {
+            return "Orientation is completed on: " + getDate();
         } else {
-            return fmtDate + ": Orientation in progress...";
+            return getDate() + ": Orientation in progress...";
         }
     }
 }

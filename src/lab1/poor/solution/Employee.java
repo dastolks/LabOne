@@ -11,7 +11,7 @@ import java.util.Date;
  * @version     1.01
  */
 public class Employee {
-private String firstName;
+    private String firstName;
     private String lastName;
     private String ssn;
     private Date birthDate;
