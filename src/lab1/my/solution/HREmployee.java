@@ -17,7 +17,6 @@ public class HREmployee {
     public HREmployee() {
         this.emp = new Employee();
     }
-    
     public void orientateNewEmployee(String firstName, String lastName, String ssn, String area){
         this.emp.setName(firstName, lastName);
         this.emp.setSsn(ssn);

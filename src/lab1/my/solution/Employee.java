@@ -15,20 +15,20 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String ssn;
-    private Date birthDate;
     private boolean completedOrientation;
     private String cubeId;
     private Date currentDate;
 
     public Employee() {
-        currentDate = new Date();
+        this.currentDate = new Date();
     }
     public String getFirstName(){
         return this.firstName;
     }
     public String getLastName(){
         return this.lastName;
-    }   
+    }
+    //Sets both first and last names.
     public void setName(String firstName, String lastName){
         this.firstName = firstName;
         this.lastName = lastName;
@@ -55,25 +55,21 @@ public class Employee {
     private void meetWithHrForBenefitAndSalryInfo() {
         System.out.println("Met with Hr on " + getDate());
     }
-
     // Assume this is must be performed second
     private void meetDepartmentStaff() {
         System.out.println("Met with Dept. Staff on " + getDate());
     }
-
     // Assume this must be performed third
     private void reviewDeptPolicies() {
         System.out.println("Reviewed Dept. Policies on " + getDate());
     }
-
     // Assume this must be performed 4th
     private void moveIntoCubicle(String cubeId) {
         System.out.println("Moved into cube on " + getDate());
         this.cubeId = cubeId;
     }
-
     public String getStatus() {
-        if(this.completedOrientation) {
+        if(this.completedOrientation) {     //checks if overall completeion is done
             return "Orientation is completed on: " + getDate();
         } else {
             return getDate() + ": Orientation in progress...";

@@ -20,15 +20,8 @@ public class Startup {
             not have to be a GUI class.
         */
         HREmployee HR = new HREmployee();
+        System.out.println("The employee's status is: " + HR.getStatus());
         HR.orientateNewEmployee("John", "Smith", "444-44-5678","C440");
-        //HR.getStatus();
-        //employee.firstName = "Peter";
-       // employee.lastName = "Piper";
-        //employee.ssn = "333-1234";
-        
-       // employee.meetDepartmentStaff();
-       // employee.meetWithHrForBenefitAndSalryInfo();
-       // employee.reviewDeptPolicies();
 
         System.out.println("The employee's status is: " + HR.getStatus());
     }
