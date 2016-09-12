@@ -15,6 +15,10 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String ssn;
+    private boolean metWithHr;
+    private boolean metDeptStaff;
+    private boolean reviewedDeptPolicies;
+    private boolean movedIn;
     private boolean completedOrientation;
     private String cubeId;
     private Date currentDate;
@@ -52,24 +56,44 @@ public class Employee {
         return sdf.format(currentDate);
     }
     // Assume this must be performed first
-    private void meetWithHrForBenefitAndSalryInfo() {
+    public void meetWithHrForBenefitAndSalryInfo() {
+        this.metWithHr = true;
         System.out.println("Met with Hr on " + getDate());
     }
     // Assume this is must be performed second
-    private void meetDepartmentStaff() {
-        System.out.println("Met with Dept. Staff on " + getDate());
+    public void meetDepartmentStaff() {
+        if(this.metWithHr){
+            this.metDeptStaff = true;
+            System.out.println("Met with Dept. Staff on " + getDate());
+        }
+        else{
+            System.out.println("Has to meet wit Hr first!");
+        }
     }
     // Assume this must be performed third
-    private void reviewDeptPolicies() {
-        System.out.println("Reviewed Dept. Policies on " + getDate());
+    public void reviewDeptPolicies() {
+        if(this.metWithHr && this.metDeptStaff){
+            this.reviewedDeptPolicies = true;
+            System.out.println("Reviewed Dept. Policies on " + getDate());
+        }
+        else{
+            System.out.println("Needs to either meet with HR or meet dept staff!");
+        }
     }
     // Assume this must be performed 4th
-    private void moveIntoCubicle(String cubeId) {
-        System.out.println("Moved into cube on " + getDate());
-        this.cubeId = cubeId;
+    public void moveIntoCubicle(String cubeId) {
+        if(this.metWithHr && this.metDeptStaff && this.reviewedDeptPolicies){
+            this.movedIn = true;
+            System.out.println("Moved into cube on " + getDate());
+            this.cubeId = cubeId;
+        }
+        else{
+            System.out.println("Either needs to see HR, Dept Staff or review policies!");        
+        }
     }
     public String getStatus() {
-        if(this.completedOrientation) {     //checks if overall completeion is done
+        if(this.completedOrientation || (this.metDeptStaff && this.metWithHr &&
+                this.movedIn && this.reviewedDeptPolicies)) {     //checks if overall completeion is done
             return "Orientation is completed on: " + getDate();
         } else {
             return getDate() + ": Orientation in progress...";
